@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务管理-->
+            <transactionManager type="JDBC"/>
+            <!--配置数据库连接信息-->
+            <dataSource type="cn.chenmixuexi.config.DataSourceFactory">
+                <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/chatsystem?useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;nullCatalogMeansCurrent=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true"/>
+                <property name="user" value="root"/>
+                <property name="password" value="123456"/>
+                <property name="idleConnectionTestPeriod" value="60" />
+                <property name="maxPoolSize" value="20" />
+                <property name="maxIdleTime" value="600" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--
+        两种配置
+        1.基于注解
+        2.基于Sql映射文件的
+        找到相应的配置，动态代理，产生接口的实现类对象，绑定方法和SQL语句
+        -->
+        <mapper resource="mapping/UserMapper.xml"/>
+        <mapper resource="mapping/OfflineMsgMapper.xml"/>
+        <!--<mapper class="Mybatis.dao.IUserDao"/>-->
+    </mappers>
+</configuration>
